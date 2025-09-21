@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MonitorService } from '../services/monitor.service';
+import { MonitorService } from '../../services/monitor.service';
 import { interval, Subscription } from 'rxjs';
 
 @Component({
@@ -106,7 +106,7 @@ export class MonitorComponent implements OnInit, OnDestroy {
 
   private checkBackendStatus() {
     this.monitorService.checkBackendStatus().subscribe(
-      isOnline => {
+      (isOnline: boolean) => {
         this.isBackendOnline = isOnline;
       }
     );
@@ -114,7 +114,7 @@ export class MonitorComponent implements OnInit, OnDestroy {
 
   private updateLogs() {
     this.monitorService.getLogs().subscribe(
-      logs => {
+      (logs: string[]) => {
         this.logs = logs;
       }
     );
